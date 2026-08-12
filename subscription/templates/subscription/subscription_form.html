@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Subscription</title>
+
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f7fc;
+            padding:30px;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            background:#fff;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 5px 20px rgba(0,0,0,.15);
+        }
+
+        h2{
+            text-align:center;
+            color:#4f46e5;
+            margin-bottom:25px;
+        }
+
+        p{
+            margin-bottom:15px;
+        }
+
+        label{
+            font-weight:bold;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#4f46e5;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#3730a3;
+        }
+
+        .back-btn{
+            display:block;
+            text-align:center;
+            margin-top:15px;
+            text-decoration:none;
+            color:#4f46e5;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add Subscription</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save Subscription
+    </button>
+</form>
+
+<a href="{% url 'subscription_list' %}" class="back-btn">
+← Back to Subscription List
+</a>
+
+</div>
+
+</body>
+</html>

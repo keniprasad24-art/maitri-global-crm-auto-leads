@@ -1,0 +1,58 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block branding %}
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:15px 25px;">
+
+    <div style="display:flex;align-items:center;gap:12px;">
+
+        
+        <h1 style="margin:0;color:white;font-size:30px;font-weight:bold;">
+            Maitri Global CRM
+        </h1>
+
+    </div>
+
+   
+</div>
+
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<style>
+
+body{
+    background:linear-gradient(135deg,#5b21b6,#7c3aed)!important;
+}
+
+.login{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.30);
+}
+
+#header{
+    background:linear-gradient(90deg,#5b21b6,#7c3aed)!important;
+    border:none;
+}
+
+.submit-row input{
+    width:100%;
+    background:#6d28d9!important;
+    border:none!important;
+    border-radius:10px!important;
+    padding:12px!important;
+    font-weight:bold;
+}
+
+.submit-row input:hover{
+    background:#5b21b6!important;
+}
+
+</style>
+
+{% endblock %}

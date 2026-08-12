@@ -1,0 +1,137 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+<div class="p-5 rounded-4 mb-4 bg-white text-dark shadow">
+
+    <h1 class="fw-bold">
+        📄 Quotation Management
+    </h1>
+
+    <p class="mb-0">
+        Create, manage and approve customer quotations professionally.
+    </p>
+
+</div>
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-white text-dark d-flex justify-content-between align-items-center">
+
+            <h3 class="mb-0">
+                📄 Quotation List
+            </h3>
+
+            <a href="/quotations/add/" class="btn btn-light">
+                + Add Quotation
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="mb-3">
+                <input type="text"
+                       class="form-control"
+                       placeholder="🔍 Search Quotation (Coming Soon)">
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Quotation No</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for q in quotations %}
+
+                        <tr>
+
+                            <td>{{ q.id }}</td>
+
+                            <td>{{ q.quote_number }}</td>
+
+                            <td>{{ q.customer_name }}</td>
+
+                            <td><b>₹ {{ q.amount }}</b></td>
+
+                            <td>
+
+                                {% if q.status == "Approved" %}
+
+                                    <span class="badge bg-success">
+                                        Approved
+                                    </span>
+
+                                {% elif q.status == "Pending" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger">
+                                        {{ q.status }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                <a href="/quotations/edit/{{ q.id }}/"
+                                   class="btn btn-warning btn-sm">
+                                   Edit
+                                </a>
+
+                                <a href="/quotations/delete/{{ q.id }}/"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Delete this quotation?')">
+                                   Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% empty %}
+
+                        <tr>
+
+                            <td colspan="6" class="text-center">
+
+                                No Quotation Found
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+
+<h2>Add Quotation</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Quotation No</label><br>
+    <input type="text" name="quote_number" required><br><br>
+
+    <label>Customer Name</label><br>
+    <input type="text" name="customer_name" required><br><br>
+
+    <label>Amount</label><br>
+    <input type="number" name="amount" required><br><br>
+
+    <label>Status</label><br>
+    <select name="status">
+        <option>Pending</option>
+        <option>Approved</option>
+        <option>Rejected</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save</button>
+
+</form>
+
+{% endblock %}

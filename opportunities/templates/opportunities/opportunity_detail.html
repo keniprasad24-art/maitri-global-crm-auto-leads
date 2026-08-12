@@ -1,0 +1,72 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-primary text-white">
+            <h3>
+                <i class="fa-solid fa-briefcase"></i>
+                Opportunity Details
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Company</th>
+                    <td>{{ opportunity.company }}</td>
+                </tr>
+
+                <tr>
+                    <th>Contact</th>
+                    <td>{{ opportunity.contact }}</td>
+                </tr>
+
+                <tr>
+                    <th>Title</th>
+                    <td>{{ opportunity.title }}</td>
+                </tr>
+
+                <tr>
+                    <th>Value</th>
+                    <td>₹ {{ opportunity.value }}</td>
+                </tr>
+
+                <tr>
+                    <th>Stage</th>
+                    <td>{{ opportunity.stage }}</td>
+                </tr>
+
+                <tr>
+                    <th>Expected Close</th>
+                    <td>{{ opportunity.expected_close_date }}</td>
+                </tr>
+
+            </table>
+
+            <a href="{% url 'opportunity_list' %}" class="btn btn-secondary">
+                Back
+            </a>
+
+            <a href="{% url 'edit_opportunity' opportunity.id %}" class="btn btn-primary">
+                Edit
+            </a>
+
+            <a href="{% url 'delete_opportunity' opportunity.id %}"
+               class="btn btn-danger"
+               onclick="return confirm('Delete this opportunity?')">
+                Delete
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4>Profile Settings</h4>
+        </div>
+
+        <div class="card-body">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label>Username</label>
+                    <input type="text"
+                           name="username"
+                           class="form-control"
+                           value="{{ request.user.username }}">
+                </div>
+
+                <div class="mb-3">
+                    <label>Current Password</label>
+                    <input type="password"
+                           name="current_password"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>New Password</label>
+                    <input type="password"
+                           name="new_password"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Confirm Password</label>
+                    <input type="password"
+                           name="confirm_password"
+                           class="form-control">
+                </div>
+
+                <button class="btn btn-primary">
+                    Update Profile
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

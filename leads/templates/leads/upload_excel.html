@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Excel - Leads</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+        .header {
+            background: linear-gradient(90deg, #5b21b6, #7c3aed);
+            color: white;
+            padding: 18px 32px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 30px;
+        }
+        p {
+            color: #64748b;
+        }
+        .upload-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 35px;
+            text-align: center;
+            margin: 25px 0;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        button, a {
+            border: 0;
+            border-radius: 7px;
+            padding: 12px 22px;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        button {
+            background: #198754;
+            color: white;
+        }
+        a {
+            background: #6c757d;
+            color: white;
+        }
+        .note {
+            background: #f8fafc;
+            border-left: 4px solid #7c3aed;
+            padding: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">CRM PROJECT</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Import Leads from Excel</h1>
+        <p>Upload your 21-column CRM Excel file to import leads into the system.</p>
+
+        <form method="POST" action="{% url 'upload_leads_excel' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="upload-box">
+                <strong>Select Excel File</strong><br>
+                <input type="file" name="excel_file" accept=".xlsx,.xls" required>
+                <p>Supported Excel files: .xlsx / .xls</p>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">Upload Excel</button>
+                <a href="{% url 'lead_list' %}">Back to Leads</a>
+            </div>
+        </form>
+
+        <div class="note">
+            <strong>Important:</strong> Keep the Excel column order unchanged while importing.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

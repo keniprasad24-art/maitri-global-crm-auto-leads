@@ -1,0 +1,51 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="p-5 rounded-4 mb-4 text-white shadow" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);">
+    <h1 class="fw-bold"><i class="fa-solid fa-comments"></i> Initial Contact Logs</h1>
+    <p class="mb-0">Track all communications professionally.</p>
+</div>
+
+<div class="card shadow border-0 rounded-4 p-4">
+    <div class="d-flex justify-content-between mb-4">
+        <form method="GET" class="d-flex w-50">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search Lead..." value="{{ query }}">
+            <button class="btn btn-primary">Search</button>
+        </form>
+        <a href="{% url 'add_contact' %}" class="btn btn-success">+ Log New Contact</a>
+    </div>
+
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Lead Name</th>
+                <th>Date</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td><strong>{{ contact.lead.name }}</strong></td>
+                <td>{{ contact.contact_date }}</td>
+                <td>{{ contact.get_contact_method_display }}</td>
+                <td><span class="badge bg-info text-dark">{{ contact.get_status_display }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'contact_detail' contact.pk %}" class="btn btn-sm btn-outline-primary me-1">
+                        View Details
+                    </a>
+                    <a href="{% url 'add_discovery_for_lead' contact.lead.id %}" class="btn btn-warning btn-sm">
+                        Start Discovery
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center py-4">No contact logs found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

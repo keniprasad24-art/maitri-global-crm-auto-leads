@@ -1,0 +1,48 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="p-5 rounded-4 mb-4 text-white shadow" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6);">
+    <h1 class="fw-bold"><i class="fa-solid fa-handshake"></i> Discovery Meetings</h1>
+    <p class="mb-0">Manage detailed business requirements.</p>
+</div>
+
+<div class="card shadow border-0 rounded-4 p-4">
+    <div class="d-flex justify-content-between mb-4">
+        <form method="GET" class="d-flex w-50">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search Lead..." value="{{ query }}">
+            <button class="btn btn-primary">Search</button>
+        </form>
+        <a href="{% url 'add_discovery' %}" class="btn btn-success">+ Record Meeting</a>
+    </div>
+
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Lead Name</th>
+                <th>Meeting Date</th>
+                <th>Budget (₹)</th>
+                <th>Timeline</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meeting in meetings %}
+            <tr>
+                <td><strong>{{ meeting.lead.name }}</strong></td>
+                <td>{{ meeting.meeting_date }}</td>
+                <td class="text-success fw-bold">₹{{ meeting.budget }}</td>
+                <td>{{ meeting.timeline }}</td>
+                <td class="text-center">
+                    <a href="{% url 'discovery_detail' meeting.pk %}" class="btn btn-sm btn-outline-primary">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center py-4">No discovery meetings found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

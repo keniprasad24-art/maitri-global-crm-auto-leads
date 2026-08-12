@@ -1,0 +1,75 @@
+{% extends "crm_base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="card shadow-sm border-0">
+
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h4>{{ lead.name }}</h4>
+
+    <a href="{% url 'lead_list' %}" class="btn btn-secondary btn-sm">
+        Back
+    </a>
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<tr>
+    <th width="200">Lead Name</th>
+    <td>{{ lead.name }}</td>
+</tr>
+
+<tr>
+    <th>Email</th>
+    <td>{{ lead.email }}</td>
+</tr>
+
+<tr>
+    <th>Phone</th>
+    <td>{{ lead.phone }}</td>
+</tr>
+
+<tr>
+    <th>Company</th>
+    <td>{{ lead.company }}</td>
+</tr>
+
+<tr>
+    <th>Source</th>
+    <td>{{ lead.source }}</td>
+</tr>
+
+<tr>
+    <th>Status</th>
+    <td>{{ lead.status }}</td>
+</tr>
+
+{% if lead.lead_pdf %}
+<tr>
+    <th>PDF</th>
+    <td>
+       <a href="{{ lead.lead_pdf.url }}" target="_blank" class="btn btn-primary btn-sm">
+    View PDF
+</a>
+
+<a href="{% url 'edit_lead' lead.id %}" class="btn btn-warning btn-sm">
+    Change PDF
+</a>
+    </td>
+</tr>
+{% endif %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
