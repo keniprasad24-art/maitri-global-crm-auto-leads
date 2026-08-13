@@ -9,7 +9,7 @@ def qualified_list(request):
     
     if query:
         qualifieds = qualifieds.filter(
-            Q(company__icontains=query) | Q(contact__person__icontains=query) | Q(requirement__icontains=query)
+        Q(company__icontains=query) | Q(contact__person__icontains=query) | Q(requirement__icontains=query)
         )
     return render(request, "qualified/qualified_list.html", {"qualifieds": qualifieds, "query": query})
 
