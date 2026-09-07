@@ -1,0 +1,152 @@
+{% extends "crm_base.html" %}
+{% block content %}
+
+<div class="container-fluid py-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom py-3">
+            <h3 class="mb-1 fw-bold">Add New Lead</h3>
+            <p class="text-muted mb-0">Enter the lead details below.</p>
+        </div>
+
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row g-3">
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold">Sr. No.</label>
+                        <input type="number" name="sr_no" class="form-control" min="0">
+                    </div>
+
+                    <div class="col-md-9">
+                        <label class="form-label fw-semibold">Current Requirements</label>
+                        <textarea name="current_requirements" class="form-control" rows="1"></textarea>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Lead received date</label>
+                        <input type="date" name="lead_received_date" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Lead Source</label>
+                        <input type="text" name="lead_source" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Reference name</label>
+                        <input type="text" name="reference_name" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Client name</label>
+                        <input type="text" name="client_name" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">End Client</label>
+                        <input type="text" name="end_client" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Location</label>
+                        <input type="text" name="location" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Contact Person</label>
+                        <input type="text" name="contact_person" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Designation</label>
+                        <input type="text" name="designation" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Mobile no.</label>
+                        <input type="text" name="mobile_no" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Email id</label>
+                        <input type="email" name="email_id" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">One time/Recurring</label>
+                        <input type="text" name="one_time_recurring" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Project Duration</label>
+                        <input type="text" name="project_duration" class="form-control">
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label fw-semibold">Consultant name who will work</label>
+                        <input type="text" name="consultant_name" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Consultant cost</label>
+                        <input type="number" name="consultant_cost" class="form-control" step="0.01">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Maitri Margin</label>
+                        <input type="number" name="maitri_margin" class="form-control" step="0.01">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Lead Stage</label>
+                        <input type="text" name="lead_stage" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Next follow up date</label>
+                        <input type="date" name="next_follow_up_date" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Vendor working on</label>
+                        <input type="text" name="vendor_working_on" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Qualified">Qualified</option>
+                            <option value="Lost">Lost</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <hr class="my-2">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Upload PDF</label>
+                        <input type="file" name="lead_pdf" class="form-control" accept=".pdf,application/pdf">
+                        <small class="text-muted">Optional</small>
+                    </div>
+
+                </div>
+
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-success px-4">
+                        <i class="fa-solid fa-check me-1"></i> Save Lead
+                    </button>
+                    <a href="{% url 'lead_list' %}" class="btn btn-secondary px-4">
+                        Back
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

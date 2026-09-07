@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Contact</title>
+</head>
+<body>
+
+<h2>Add Contact</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Company</label><br>
+    <select name="company" required>
+        {% for company in companies %}
+        <option value="{{ company.id }}">
+            {{ company.company_name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>First Name</label><br>
+    <input type="text" name="first_name" required>
+
+    <br><br>
+
+    <label>Last Name</label><br>
+    <input type="text" name="last_name" required>
+
+    <br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" required>
+
+    <br><br>
+
+    <label>Phone</label><br>
+    <input type="text" name="phone" required>
+
+    <br><br>
+
+    <button type="submit">Save Contact</button>
+
+</form>
+
+<br>
+
+<a href="/contacts/">Back to Contact List</a>
+
+</body>
+</html>

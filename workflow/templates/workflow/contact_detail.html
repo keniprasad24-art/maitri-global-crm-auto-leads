@@ -1,0 +1,38 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white py-3">
+            <h4 class="mb-0"><i class="fa-solid fa-comments"></i> Initial Contact Details</h4>
+        </div>
+        <div class="card-body p-4">
+            <h3 class="fw-bold">{{ contact.lead.name }}</h3>
+            <p class="text-muted">Contact Date: {{ contact.contact_date }}</p>
+            <hr>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Method</p>
+                    <span class="badge bg-info text-dark">{{ contact.get_contact_method_display }}</span>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Status</p>
+                    <span class="badge bg-secondary">{{ contact.get_status_display }}</span>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Next Follow-up</p>
+                    <strong>{{ contact.next_followup_date|default:"None" }}</strong>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h6 class="fw-bold">Discussion Summary:</h6>
+                <div class="p-3 bg-light border rounded">{{ contact.discussion_summary|linebreaks }}</div>
+            </div>
+            <div class="mb-3">
+                <h6 class="fw-bold">Customer Response:</h6>
+                <div class="p-3 bg-light border rounded">{{ contact.customer_response|linebreaks }}</div>
+            </div>
+            <a href="{% url 'contact_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

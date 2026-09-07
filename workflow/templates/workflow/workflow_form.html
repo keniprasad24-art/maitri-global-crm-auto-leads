@@ -1,0 +1,28 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white p-3">
+            <h4 class="mb-0"><i class="fa-solid fa-pen-to-square"></i> {{ title }}</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-success px-5">Save Details</button>
+                    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

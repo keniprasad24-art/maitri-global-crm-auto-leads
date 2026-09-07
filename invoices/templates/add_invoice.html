@@ -1,0 +1,36 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+
+<h2>{% if form.instance.pk %}Edit Invoice{% else %}Add Invoice{% endif %}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <p>
+        <label>Invoice No</label><br>
+        {{ form.invoice_no }}
+    </p>
+
+    <p>
+        <label>Customer</label><br>
+        {{ form.customer }}
+    </p>
+
+    <p>
+        <label>Amount</label><br>
+        {{ form.amount }}
+    </p>
+
+    <p>
+        <label>Status</label><br>
+        {{ form.status }}
+    </p>
+
+    <button type="submit">Save</button>
+
+    <a href="{% url 'invoice_list' %}">Cancel</a>
+
+</form>
+
+{% endblock %}

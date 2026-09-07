@@ -1,0 +1,50 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-success text-white py-3">
+            <h4 class="mb-0"><i class="fa-solid fa-chart-line"></i> Full Requirement Analysis</h4>
+        </div>
+        <div class="card-body p-4">
+            <!-- येथे व्हेरिएबल 'analysis' आहे, 'contact' नाही -->
+            <h3 class="fw-bold text-dark">{{ analysis.lead.name }}</h3>
+            <p class="text-muted">Analysis Date: {{ analysis.analysis_date }}</p>
+            <hr>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 bg-light border rounded shadow-sm">
+                        <p class="mb-0 text-muted small">Estimated Budget</p>
+                        <h4 class="text-success fw-bold">₹{{ analysis.estimated_budget }}</h4>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light border rounded shadow-sm">
+                        <p class="mb-0 text-muted small">Estimated Timeline</p>
+                        <h4 class="text-primary fw-bold">{{ analysis.estimated_timeline }}</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h6 class="fw-bold text-success">Functional Requirements (काय हवे आहे?)</h6>
+                <div class="p-3 border rounded bg-white">{{ analysis.functional_requirements|linebreaks }}</div>
+            </div>
+
+            <div class="mb-4">
+                <h6 class="fw-bold text-primary">Technical Requirements (तांत्रिक गरजा)</h6>
+                <div class="p-3 border rounded bg-white">{{ analysis.technical_requirements|linebreaks }}</div>
+            </div>
+
+            <div class="mb-4">
+                <h6 class="fw-bold text-dark">Proposed Solution (आपण काय देणार आहोत?)</h6>
+                <div class="p-3 border rounded bg-white">{{ analysis.proposed_solution|linebreaks }}</div>
+            </div>
+
+            <div class="mt-4">
+                <a href="{% url 'analysis_list' %}" class="btn btn-secondary px-4">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

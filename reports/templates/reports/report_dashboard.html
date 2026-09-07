@@ -1,0 +1,57 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2 class="mb-4">📊 Reports Dashboard</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Leads</h5>
+<h2>{{ lead_count }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Companies</h5>
+<h2>{{ company_count }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Contacts</h5>
+<h2>{{ contact_count }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Opportunities</h5>
+<h2>{{ opportunity_count }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Quotations</h5>
+<h2>{{ quotation_count }}</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-center shadow p-4">
+<h5>Total Invoices</h5>
+<h2>{{ invoice_count }}</h2>
+</div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

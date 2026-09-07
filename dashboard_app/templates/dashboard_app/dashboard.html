@@ -1,0 +1,381 @@
+{% extends "crm_base.html" %}
+
+{% block title %}Dashboard | Maitri Global CRM{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-description">
+            Welcome to Maitri Global CRM — your sales and customer management workspace.
+        </p>
+    </div>
+
+    <div class="d-flex gap-2">
+        <select class="form-select" id="daysFilter"
+                onchange="window.location.href='?days='+this.value;">
+            <option value="7" {% if selected_days == 7 %}selected{% endif %}>Last 7 Days</option>
+            <option value="15" {% if selected_days == 15 %}selected{% endif %}>Last 15 Days</option>
+            <option value="30" {% if selected_days == 30 %}selected{% endif %}>Last 30 Days</option>
+            <option value="90" {% if selected_days == 90 %}selected{% endif %}>Last 90 Days</option>
+            <option value="365" {% if selected_days == 365 %}selected{% endif %}>This Year</option>
+        </select>
+
+        <button class="btn btn-outline-primary" onclick="location.reload();">
+            <i class="fa-solid fa-rotate"></i> Refresh
+        </button>
+    </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="row g-3">
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'lead_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Leads</div>
+                        <div class="kpi-value">{{ lead_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'company_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Companies</div>
+                        <div class="kpi-value">{{ company_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'opportunity_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Opportunities</div>
+                        <div class="kpi-value">{{ opportunity_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'quotation_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Quotations</div>
+                        <div class="kpi-value">{{ quotation_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'invoice_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Invoices</div>
+                        <div class="kpi-value">{{ invoice_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'qualified_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Qualified</div>
+                        <div class="kpi-value">{{ qualified_count }}</div>
+                        <small class="text-success">Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'opportunity_list' %}?status=Won" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Won</div>
+                        <div class="kpi-value">{{ won_count }}</div>
+                        <small class="text-success">Won Opportunities</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'opportunity_list' %}?status=Lost" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Lost</div>
+                        <div class="kpi-value">{{ lost_count }}</div>
+                        <small class="text-danger">Lost Opportunities</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'subscription_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Total Subscriptions</div>
+                        <div class="kpi-value">{{ total_subscriptions }}</div>
+                        <small class="text-success">All Subscriptions</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'subscription_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Active Subscriptions</div>
+                        <div class="kpi-value">{{ active_subscriptions }}</div>
+                        <small class="text-success">Currently Active</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+        <a href="{% url 'subscription_list' %}" class="kpi-link">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="kpi-label">Expired Subscriptions</div>
+                        <div class="kpi-value">{{ expired_subscriptions }}</div>
+                        <small class="text-danger">Requires Attention</small>
+                    </div>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<!-- RECENT LEADS -->
+<div class="card mt-4">
+    <div class="p-3 border-bottom">
+        <h5 class="card-heading mb-1">
+            <i class="fa-solid fa-user-clock"></i> Recent Leads
+        </h5>
+        <small class="text-muted">Latest leads added to the CRM.</small>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for lead in recent_leads %}
+                <tr>
+                    <td>
+                        <strong>{{ lead.name }}</strong>
+                    </td>
+                    <td>{{ lead.company }}</td>
+                    <td>
+                        <span class="badge bg-light text-dark border">
+                            {{ lead.status }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted py-4">
+                        No Leads Found
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.crm-chart-box{
+    position:relative;
+    width:100%;
+    height:240px;
+    max-height:240px;
+    overflow:hidden;
+}
+.crm-chart-box canvas{
+    display:block !important;
+    width:100% !important;
+    height:240px !important;
+    max-height:240px !important;
+}
+</style>
+
+<!-- CHARTS -->
+<div class="row g-3 mt-1">
+
+    <div class="col-lg-6">
+        <div class="card chart-card">
+            <h5 class="card-heading mb-3">
+                <i class="fa-solid fa-chart-line"></i> Monthly Leads
+            </h5>
+            <div class="crm-chart-box">
+                <canvas id="leadChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card chart-card">
+            <h5 class="card-heading mb-3">
+                <i class="fa-solid fa-chart-column"></i> Sales Pipeline
+            </h5>
+            <div class="crm-chart-box">
+                <canvas id="oppChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const leadCanvas = document.getElementById('leadChart');
+
+    if (leadCanvas) {
+        new Chart(leadCanvas, {
+            type: 'line',
+            data: {
+                labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+                datasets: [{
+                    label: 'Leads',
+                    data: [12,19,10,22,18,30],
+                    borderColor: '#2490ef',
+                    backgroundColor: 'rgba(36,144,239,.10)',
+                    fill: true,
+                    tension: .4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    const oppCanvas = document.getElementById('oppChart');
+
+    if (oppCanvas) {
+        new Chart(oppCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['New','Qualified','Proposal','Won'],
+                datasets: [{
+                    label: 'Opportunity',
+                    data: [12,9,6,3],
+                    backgroundColor: '#2490ef',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "crm_base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-warning text-dark py-3">
+            <h4 class="mb-0"><i class="fa-solid fa-handshake"></i> Discovery Meeting Details</h4>
+        </div>
+        <div class="card-body p-4">
+            <h3 class="fw-bold">{{ meeting.lead.name }}</h3>
+            <p class="text-muted">Meeting Date: {{ meeting.meeting_date }}</p>
+            <hr>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Proposed Budget</p>
+                    <h5 class="text-success fw-bold">₹{{ meeting.budget }}</h5>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Timeline</p>
+                    <h5>{{ meeting.timeline }}</h5>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0 text-muted">Decision Maker</p>
+                    <h5>{{ meeting.decision_maker }}</h5>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h6 class="fw-bold text-danger">Business Challenges:</h6>
+                <div class="p-3 bg-light border rounded">{{ meeting.business_challenges|linebreaks }}</div>
+            </div>
+            <div class="mb-3">
+                <h6 class="fw-bold text-primary">Expected Outcomes:</h6>
+                <div class="p-3 bg-light border rounded">{{ meeting.expected_outcomes|linebreaks }}</div>
+            </div>
+            <a href="{% url 'discovery_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

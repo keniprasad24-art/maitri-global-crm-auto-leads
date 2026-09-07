@@ -1,0 +1,30 @@
+{% extends "crm_base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-primary text-white py-3">
+            <h4 class="mb-0"><i class="fa-solid fa-plus-circle"></i> Add New Qualified Lead</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- डॅन्गो फॉर्म आपोआप इथे दिसेल -->
+                    {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'qualified_list' %}" class="btn btn-secondary me-2">Cancel</a>
+                    <button type="submit" class="btn btn-success px-5">Save Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
