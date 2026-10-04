@@ -8,4 +8,5 @@ media/
 staticfiles/
 .vscode/
 lead_pdfs/
-*.zip
+*.zipdata.json
+data.json

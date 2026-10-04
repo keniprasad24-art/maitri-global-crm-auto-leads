@@ -44,7 +44,7 @@ class Lead(models.Model):
     lead_stage = models.CharField(max_length=100, blank=True, default="")
     next_follow_up_date = models.DateField(null=True, blank=True)
     vendor_working_on = models.CharField(max_length=200, blank=True, default="")
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="New")
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES, default="New")
 
     # ===== Existing CRM fields retained for safety/compatibility =====
     name = models.CharField(max_length=100, blank=True, default="")
